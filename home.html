@@ -1,0 +1,138 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Legacy Event Center — Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-wrap">
+        <h1 class="logo">Legacy Event Center</h1>
+
+        <nav class="site-nav">
+          <ul>
+            <li><a href="home.html" class="active">Home</a></li>
+            <li><a href="events.html">Create Events</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="resources.html">My Tickets</a></li>
+          </ul>
+        </nav>
+        <label class="switch">
+          <input type="checkbox" id="toggle-mode" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </header>
+    <section class="hero">
+      <div class="container hero-inner">
+        <h2>Home</h2>
+        <p>Browse to see what events are happening.</p>
+      </div>
+    </section>
+    <main class="container article">
+      <h3 class="section-heading">Send us a message</h3>
+
+      <p class="intro">
+        Tell us a little about your issue and we’ll get back to you as soon as
+        we can. Prefer self-service? Visit the
+        <a href="help.html">Help Center&nbsp;→</a>
+      </p>
+
+      <form id="contact-form" novalidate>
+        <div class="form-row half">
+          <label for="name">Name</label>
+          <input id="name" required />
+        </div>
+
+        <div class="form-row half">
+          <label for="email">Email</label>
+          <input id="email" type="email" required />
+        </div>
+
+        <div class="form-row">
+          <label for="subject">Subject</label>
+          <input id="subject" required />
+        </div>
+
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" rows="6" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary">Send Message</button>
+      </form>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">&copy;&nbsp;2025 Legacy Event Center</div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+-->
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Legacy Event Center — Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- your existing header -->
+    <header class="site-header">
+      <div class="container header-wrap">
+        <h1 class="logo">Legacy Event Center</h1>
+        <nav class="site-nav">
+          <ul>
+            <li><a href="home.html" class="active">Home</a></li>
+            <!-- <li><a href="events.html">Create Events</a></li> -->
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="resources.html">My Tickets</a></li>
+          </ul>
+        </nav>
+        <label class="switch">
+          <input type="checkbox" id="toggle-mode" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </header>
+
+    <!-- your existing hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <h2>Home</h2>
+        <p>Browse to see what events are happening.</p>
+      </div>
+    </section>
+
+    <main class="container">
+      <!-- Events Grid -->
+      <section class="events-grid">
+        <h3 class="section-heading">Upcoming Events</h3>
+        <div class="grid">
+          <!-- JS will populate nine .event-card elements here -->
+        </div>
+      </section>
+
+      <!-- Calendar -->
+      <section class="calendar-section">
+        <h3 class="section-heading">Calendar</h3>
+        <div id="calendar"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">&copy;&nbsp;2025 Legacy Event Center</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="home.js"></script>
+  </body>
+</html>
