@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Legacy Event Center – Help Center</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="help.css" /> -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: #fff;
+        transition: 0.4s;
+      }
+      .container {
+        width: 90%;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .site-header {
+        background: #fff;
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+      }
+      .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo {
+        font-size: 1.8rem;
+        color: #d14da5;
+      }
+      .site-nav ul {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+      }
+      .site-nav a {
+        color: #333;
+        text-decoration: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        transition: 0.3s;
+      }
+      .site-nav a:hover,
+      .site-nav .active {
+        background: #f2f2f2;
+      }
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #ccc;
+        border-radius: 24px;
+        transition: 0.4s;
+      }
+      .slider::before {
+        content: "☀️";
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        transition: 0.4s;
+      }
+      input:checked + .slider {
+        background: #333;
+      }
+      input:checked + .slider::before {
+        transform: translateX(26px);
+        content: "🌙";
+      }
+
+      main {
+        padding: 100px 0 60px;
+      }
+      .help-hero {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      #help-search {
+        padding: 10px;
+        width: 100%;
+        max-width: 480px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        margin-top: 15px;
+      }
+      .faq details {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        padding: 10px 15px;
+        background: #fff;
+      }
+      .faq summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .faq p {
+        margin-top: 10px;
+      }
+      .cta-contact {
+        margin: 40px 0;
+        text-align: center;
+      }
+      .btn-link {
+        color: #e32f2f;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .btn-link:hover {
+        text-decoration: underline;
+      }
+
+      .site-footer {
+        background: #f8f8f8;
+        border-top: 1px solid #ddd;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 0.9rem;
+      }
+
+      body.dark-mode {
+        background: #222;
+        color: #eee;
+      }
+      body.dark-mode .site-header {
+        background: #333;
+        border-bottom-color: #444;
+      }
+      body.dark-mode .logo {
+        color: #f6f6f6;
+      }
+      body.dark-mode .site-nav a {
+        color: #eee;
+      }
+      body.dark-mode .site-nav a:hover,
+      .dark-mode .site-nav .active {
+        background: #444;
+      }
+      body.dark-mode .help-hero p,
+      body.dark-mode #help-search {
+        color: #eee;
+      }
+      body.dark-mode #help-search {
+        background: #444;
+        border-color: #555;
+      }
+      body.dark-mode .faq details {
+        background: #333;
+        border-color: #444;
+      }
+      body.dark-mode .faq summary {
+        color: #eee;
+      }
+      body.dark-mode .btn-link {
+        color: #ff7878;
+      }
+      body.dark-mode .site-footer {
+        background: #333;
+        border-top-color: #444;
+        color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-container">
+        <h1 class="logo">Legacy Event Center</h1>
+
+        <nav class="site-nav">
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <!-- <li><a href="events.html">Create Events</a></li> -->
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="resources.html">My Tickets</a></li>
+          </ul>
+        </nav>
+
+        <label class="switch">
+          <input type="checkbox" id="toggle-mode" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </header>
+
+    <main class="container help-page">
+      <section class="help-hero">
+        <h2>Help Center</h2>
+        <p>Find answers to the most common questions.</p>
+        <input
+          id="help-search"
+          type="text"
+          placeholder="Search the help center…"
+        />
+      </section>
+
+      <section class="faq">
+        <details>
+          <summary>How do I purchase tickets for an event?</summary>
+          <p>
+            Browse the Events page, choose an event, and click “Get Tickets.”
+            Follow the checkout prompts.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I get a refund?</summary>
+          <p>
+            Refunds depend on the organizer’s policy. Check event details or
+            contact us with your order number.
+          </p>
+        </details>
+
+        <details>
+          <summary>Where do I find my tickets?</summary>
+          <p>
+            Tickets are emailed to you and stored in your profile under “My
+            Tickets.”
+          </p>
+        </details>
+      </section>
+
+      <div class="cta-contact">
+        <p>Still need help?</p>
+        <a href="contact.html" class="btn-link">Contact Us</a>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">&copy; 2025 Legacy Event Center</div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

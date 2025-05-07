@@ -1,0 +1,253 @@
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --brand:#d14da5;      /* Eventbrite-style orange */
+ --bg:#fff;            --bg-dark:#1f1f1f;
+ --text:#333;          --text-dark:#eee;
+ --border:#e5e5e5;     --border-dark:#444;
+ --shadow:0 4px 24px rgba(0,0,0,.08);
+ --radius:8px;
+ --head-font:Inter,Helvetica,Arial,sans-serif;
+}
+body{
+ font-family:var(--head-font);
+ line-height:1.65;
+ color:var(--text);
+ background:var(--bg);
+ transition:.4s;
+}
+.container{width:92%;max-width:980px;margin:auto}
+
+
+.site-header {
+ background:var(--bg);
+ border-bottom:1px solid var(--border);
+ position:fixed;top:0;width:100%;z-index:90;padding:12px 0;
+}
+.header-wrap {
+    display:flex;
+    justify-content:space-between;
+    align-items:center
+}
+.logo {
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--brand)
+}
+.site-nav ul {
+    display:flex;gap:22px;
+    list-style:none;
+    font-size:.95rem
+}
+.site-nav a {
+    color:var(--text);
+    text-decoration:none;
+    padding:6px 10px;
+    border-radius:4px
+}
+.site-nav a:hover,.active {
+    background:#f7f7f7
+}
+
+/* Dark Mode */
+
+.switch {
+    position:relative;
+    width:50px;
+    height:24px
+}
+.switch input {
+    opacity:0;
+    width:0;
+    height:0
+}
+.slider {
+    position:absolute;
+    inset:0;
+    background:#ccc;
+    border-radius:24px;
+    transition:.4s
+}
+.slider::before {
+    content:"☀️";
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    transition:.4s
+}
+input:checked+.slider {
+    background:#333
+}
+input:checked+.slider::before {
+    transform:translateX(26px);
+    content:"🌙"
+}
+
+
+.hero{margin-top:74px;padding:64px 0;background:linear-gradient(135deg,#fff6f2 0%,#fff 60%);text-align:center}
+.hero h2{font-size:2.3rem;margin-bottom:6px}
+.hero p{font-size:1.05rem;color:#555}
+
+
+.article{
+ background:var(--bg);
+ margin: -40px auto 80px;
+ padding:48px;
+ border:1px solid var(--border);
+ border-radius:var(--radius);
+ box-shadow:var(--shadow);
+}
+.section-heading{
+ font-size:1.25rem;
+ font-weight:700;
+ padding-left:12px;
+ border-left:6px solid var(--brand);
+ margin-bottom:22px;
+}
+.intro{margin-bottom:26px;font-size:1rem}
+.intro a{color:var(--brand);font-weight:600;text-decoration:none}
+.intro a:hover{text-decoration:underline}
+
+
+form{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.form-row{display:flex;flex-direction:column}
+.form-row.half{grid-column:span 1}
+.form-row label{font-weight:600;margin-bottom:6px}
+.form-row input,.form-row textarea{
+ padding:12px;font-size:1rem;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--text);
+}
+.btn-primary{
+ grid-column:1/-1;
+ justify-self:start;
+ background:var(--brand);
+ color:#fff;
+ border:none;
+ padding:13px 32px;
+ font-size:1rem;
+ border-radius:30px;
+ cursor:pointer;
+ transition:.3s;
+}
+.btn-primary:hover{background:#d95a15}
+
+
+.site-footer {
+    background:#f8f8f8;
+    border-top:1px solid var(--border);
+    text-align:center;
+    padding:24px;
+    font-size:.9rem
+}
+
+
+body.dark-mode{
+    --bg:var(--bg-dark);
+    --text:var(--text-dark);
+    --border:var(--border-dark)
+}
+body.dark-mode{
+    color:var(--text);
+    background:var(--bg)
+}
+body.dark-mode .site-header,body.dark-mode .article {
+    background:#2b2b2b
+}
+body.dark-mode .site-nav a {
+    color:var(--text)
+}
+body.dark-mode .site-nav a:hover,.dark-mode .active {
+    background:#444
+}
+body.dark-mode .article {
+    border-color:var(--border)
+}
+body.dark-mode input,body.dark-mode textarea {
+    background:#444;
+    color:#eee;
+    border-color:#555
+}
+body.dark-mode .btn-primary {
+    background:#555
+}
+body.dark-mode .hero {
+    background:linear-gradient(135deg,#333 0%,#2b2b2b 60%)
+}
+body.dark-mode .site-footer {
+    background:#2b2b2b;
+    border-top-color:#444;
+    color:#ccc
+}
+
+
+
+
+
+/* Home/Events Styles */
+/* add to styles.css below your existing styles */
+
+/* 1. EVENTS GRID */
+.events-grid .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 32px 0;
+  }
+  .event-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    text-align: center;
+  }
+  .event-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .event-card .info {
+    padding: 12px;
+  }
+  .event-card h4 {
+    margin: 8px 0;
+    font-size: 1.1rem;
+  }
+  .event-card p {
+    font-size: 0.95rem;
+    color: #666;
+  }
+  
+  /* 2. CALENDAR */
+  .calendar-section {
+    margin-bottom: 80px;
+  }
+  #calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+  }
+  #calendar .day-name {
+    font-weight: 600;
+    padding: 6px 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  #calendar .day {
+    padding: 10px 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+  }
+  #calendar .today {
+    background: var(--brand);
+    color: #fff;
+  }
+  
