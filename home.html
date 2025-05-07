@@ -1,138 +1,120 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Legacy Event Center — Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container header-wrap">
-        <h1 class="logo">Legacy Event Center</h1>
-
-        <nav class="site-nav">
-          <ul>
-            <li><a href="home.html" class="active">Home</a></li>
-            <li><a href="events.html">Create Events</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="resources.html">My Tickets</a></li>
-          </ul>
-        </nav>
-        <label class="switch">
-          <input type="checkbox" id="toggle-mode" />
-          <span class="slider"></span>
-        </label>
-      </div>
-    </header>
-    <section class="hero">
-      <div class="container hero-inner">
-        <h2>Home</h2>
-        <p>Browse to see what events are happening.</p>
-      </div>
-    </section>
-    <main class="container article">
-      <h3 class="section-heading">Send us a message</h3>
-
-      <p class="intro">
-        Tell us a little about your issue and we’ll get back to you as soon as
-        we can. Prefer self-service? Visit the
-        <a href="help.html">Help Center&nbsp;→</a>
-      </p>
-
-      <form id="contact-form" novalidate>
-        <div class="form-row half">
-          <label for="name">Name</label>
-          <input id="name" required />
-        </div>
-
-        <div class="form-row half">
-          <label for="email">Email</label>
-          <input id="email" type="email" required />
-        </div>
-
-        <div class="form-row">
-          <label for="subject">Subject</label>
-          <input id="subject" required />
-        </div>
-
-        <div class="form-row">
-          <label for="message">Message</label>
-          <textarea id="message" rows="6" required></textarea>
-        </div>
-
-        <button type="submit" class="btn-primary">Send Message</button>
-      </form>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container">&copy;&nbsp;2025 Legacy Event Center</div>
-    </footer>
-
-    <script src="script.js"></script>
-  </body>
-</html>
--->
-<!-- home.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Legacy Event Center — Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <!-- your existing header -->
-    <header class="site-header">
-      <div class="container header-wrap">
-        <h1 class="logo">Legacy Event Center</h1>
-        <nav class="site-nav">
-          <ul>
-            <li><a href="home.html" class="active">Home</a></li>
-            <!-- <li><a href="events.html">Create Events</a></li> -->
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="resources.html">My Tickets</a></li>
-          </ul>
-        </nav>
-        <label class="switch">
-          <input type="checkbox" id="toggle-mode" />
-          <span class="slider"></span>
-        </label>
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <title>Legacy Event Center — Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .form-message {
+      margin-top: 12px;
+      font-weight: 600;
+    }
+    .form-message.success {
+      color: green;
+    }
+    .form-message.error {
+      color: red;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    .modal h3 {
+      margin-top: 0;
+    }
+    .close-btn {
+      float: right;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-wrap">
+      <h1 class="logo">Legacy Event Center</h1>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="home.html" class="active">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="help.html">Help</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="resources.html">My Tickets</a></li>
+        </ul>
+      </nav>
+      <label class="switch">
+        <input type="checkbox" id="toggle-mode" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </header>
 
-    <!-- your existing hero -->
-    <section class="hero">
-      <div class="container hero-inner">
-        <h2>Home</h2>
-        <p>Browse to see what events are happening.</p>
-      </div>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h2>Home</h2>
+      <p>Browse to see what events are happening.</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="events-grid">
+      <h3 class="section-heading">Upcoming Events</h3>
+      <div class="grid"></div>
     </section>
 
-    <main class="container">
-      <!-- Events Grid -->
-      <section class="events-grid">
-        <h3 class="section-heading">Upcoming Events</h3>
-        <div class="grid">
-          <!-- JS will populate nine .event-card elements here -->
+    <section class="booking-section">
+      <h3 class="section-heading">Book an Event</h3>
+      <form id="event-form">
+        <div class="form-row">
+          <label for="event-title">Event Title (max 30 characters)</label>
+          <input type="text" id="event-title" required />
         </div>
-      </section>
+        <div class="form-row">
+          <label for="event-date">Event Date (within 1 year)</label>
+          <input type="date" id="event-date" required />
+        </div>
+        <div class="form-row">
+          <label for="event-desc">Description (max 500 characters)</label>
+          <textarea id="event-desc" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Submit Event</button>
+        <div id="form-message" class="form-message"></div>
+      </form>
+    </section>
+  </main>
 
-      <!-- Calendar -->
-      <section class="calendar-section">
-        <h3 class="section-heading">Calendar</h3>
-        <div id="calendar"></div>
-      </section>
-    </main>
+  <div id="event-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="document.getElementById('event-modal').style.display='none'">&times;</span>
+      <h3 id="modal-title"></h3>
+      <p><strong>Date:</strong> <span id="modal-date"></span></p>
+      <p id="modal-desc"></p>
+      <button id="modal-delete" class="btn-primary" style="background:red; margin-top:10px;">Delete Event</button>
+    </div>
+  </div>
 
-    <footer class="site-footer">
-      <div class="container">&copy;&nbsp;2025 Legacy Event Center</div>
-    </footer>
+  <footer class="site-footer">
+    <div class="container">&copy;&nbsp;2025 Legacy Event Center</div>
+  </footer>
 
-    <script src="script.js"></script>
-    <script src="home.js"></script>
-  </body>
+  <script src="script.js"></script>
+  <script src="home.js"></script>
+</body>
 </html>

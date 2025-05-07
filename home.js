@@ -1,71 +1,114 @@
-// events.js
 document.addEventListener('DOMContentLoaded', () => {
-  // ── Render 9 placeholder events ────────────────────────
-  const events = [
-    { title: 'Summer Gala', date: '2025-06-10', img: 'https://via.placeholder.com/300x200' },
-    { title: 'Tech Expo',     date: '2025-06-14', img: 'https://via.placeholder.com/300x200' },
-    { title: 'Art Fair',      date: '2025-06-18', img: 'https://via.placeholder.com/300x200' },
-    { title: 'Concert Night', date: '2025-06-22', img: 'https://via.placeholder.com/300x200' },
-    { title: 'Food Festival', date: '2025-06-25', img: 'https://via.placeholder.com/300x200' },
-    { title: 'Marathon',      date: '2025-07-01', img: 'https://via.placeholder.com/300x200' },
-    { title: 'Book Launch',   date: '2025-07-05', img: 'https://via.placeholder.com/300x200' },
-    { title: 'Film Premiere', date: '2025-07-10', img: 'https://via.placeholder.com/300x200' },
-    { title: 'Dance Showcase',date: '2025-07-15', img: 'https://via.placeholder.com/300x200' },
+  let events = [
+    { title: 'Summer Gala', date: '2025-06-10', desc: 'Celebrate the start of summer with music, food, and fun.' },
+    { title: 'Tech Expo', date: '2025-06-14', desc: 'Explore innovations from top tech companies.' },
+    { title: 'Art Fair', date: '2025-06-18', desc: 'A showcase of local artists and their creations.' },
+    { title: 'Concert Night', date: '2025-06-22', desc: 'Live performances by local bands.' },
+    { title: 'Food Festival', date: '2025-06-25', desc: 'Taste dishes from around the world.' },
+    { title: 'Marathon', date: '2025-07-01', desc: 'Join runners from all over the region.' },
+    { title: 'Book Launch', date: '2025-07-05', desc: 'Debut of a new mystery thriller by acclaimed author.' },
+    { title: 'Film Premiere', date: '2025-07-10', desc: 'Red carpet screening of a new indie film.' },
+    { title: 'Dance Showcase', date: '2025-07-15', desc: 'Talented dancers take the stage.' },
   ];
 
   const grid = document.querySelector('.events-grid .grid');
-  events.forEach(evt => {
-    const card = document.createElement('div');
-    card.className = 'event-card';
-    card.innerHTML = `
-      <img src="${evt.img}" alt="${evt.title}">
-      <div class="info">
-        <h4>${evt.title}</h4>
-        <p>${new Date(evt.date).toLocaleDateString()}</p>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
+  const form = document.getElementById('event-form');
+  const message = document.getElementById('form-message');
+  const modal = document.getElementById('event-modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDate = document.getElementById('modal-date');
+  const modalDesc = document.getElementById('modal-desc');
+  const modalDelete = document.getElementById('modal-delete');
 
-  // ── Simple Calendar Generator ──────────────────────────
-  function renderCalendar(year, month) {
-    const cal = document.getElementById('calendar');
-    cal.innerHTML = '';
+  let currentEventIndex = null;
 
-    // Weekday headers
-    const daysOfWeek = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    daysOfWeek.forEach(d => {
-      const dn = document.createElement('div');
-      dn.className = 'day-name';
-      dn.textContent = d;
-      cal.appendChild(dn);
+  function renderEvents() {
+    events.sort((a, b) => new Date(a.date) - new Date(b.date));
+    grid.innerHTML = '';
+    events.forEach((evt, index) => {
+      const card = document.createElement('div');
+      card.className = 'event-card';
+      card.innerHTML = `
+        <div class="info">
+          <h4>${evt.title}</h4>
+          <p>${new Date(evt.date).toLocaleDateString()}</p>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        currentEventIndex = index;
+        modalTitle.textContent = evt.title;
+        modalDate.textContent = new Date(evt.date).toLocaleDateString();
+        modalDesc.textContent = evt.desc;
+        modal.style.display = 'flex';
+      });
+      grid.appendChild(card);
     });
-
-    const firstDayIdx = new Date(year, month, 1).getDay();
-    const daysInMonth  = new Date(year, month + 1, 0).getDate();
-
-    // blank slots
-    for (let i = 0; i < firstDayIdx; i++) {
-      cal.appendChild(document.createElement('div'));
-    }
-
-    // days
-    for (let day = 1; day <= daysInMonth; day++) {
-      const dayEl = document.createElement('div');
-      dayEl.className = 'day';
-      dayEl.textContent = day;
-      const today = new Date();
-      if (
-        day === today.getDate() &&
-        month === today.getMonth() &&
-        year === today.getFullYear()
-      ) {
-        dayEl.classList.add('today');
-      }
-      cal.appendChild(dayEl);
-    }
   }
 
-  const now = new Date();
-  renderCalendar(now.getFullYear(), now.getMonth());
+  renderEvents();
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    message.textContent = '';
+    message.className = 'form-message';
+
+    const title = document.getElementById('event-title').value.trim();
+    const date = document.getElementById('event-date').value;
+    const desc = document.getElementById('event-desc').value.trim();
+
+    const now = new Date();
+    const selected = new Date(date);
+    const oneYearFromNow = new Date();
+    oneYearFromNow.setFullYear(now.getFullYear() + 1);
+
+    if (!title || !date || !desc) {
+      message.textContent = 'All fields are required.';
+      message.classList.add('error');
+      return;
+    }
+
+    if (title.length > 30) {
+      message.textContent = 'Event title must be 30 characters or fewer.';
+      message.classList.add('error');
+      return;
+    }
+
+    if (desc.length > 500) {
+      message.textContent = 'Description must be 500 characters or fewer.';
+      message.classList.add('error');
+      return;
+    }
+
+    if (selected < new Date(now.setHours(0, 0, 0, 0)) || selected > oneYearFromNow) {
+      message.textContent = 'Date must be from today up to one year in the future.';
+      message.classList.add('error');
+      return;
+    }
+
+    if (events.some(evt => evt.date === date)) {
+      message.textContent = 'Only one event can be held per day. Please select another date.';
+      message.classList.add('error');
+      return;
+    }
+
+    events.push({ title, date, desc });
+    renderEvents();
+    message.textContent = 'Event submitted successfully!';
+    message.classList.add('success');
+    form.reset();
+  });
+
+  modalDelete.addEventListener('click', () => {
+    if (currentEventIndex !== null && confirm('Are you sure you want to delete this event?')) {
+      events.splice(currentEventIndex, 1);
+      renderEvents();
+      modal.style.display = 'none';
+    }
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
 });
